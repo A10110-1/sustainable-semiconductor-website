@@ -28,6 +28,12 @@ body {
     padding: 0 20px;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* 導航欄 */
 .navbar {
     background: linear-gradient(135deg, var(--primary-color) 0%, #0D5E5C 100%);
@@ -49,11 +55,19 @@ body {
 .hero {
     background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
     color: white;
-    text-align: center;
-    padding: 100px 20px;
+    padding: 80px 20px;
 }
 
-.hero h1 {
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-text h1 {
     font-size: 48px;
     margin-bottom: 15px;
     font-weight: 700;
@@ -63,6 +77,18 @@ body {
     font-size: 24px;
     font-weight: 300;
     letter-spacing: 2px;
+}
+
+.hero-image {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.hero-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
 }
 
 /* 主要區塊 */
@@ -95,14 +121,30 @@ section h2::after {
 .about {
     background-color: var(--light-bg);
     border-radius: 10px;
-    text-align: center;
 }
 
-.about p {
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-image {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.about-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.about-text p {
     font-size: 18px;
     color: var(--light-text);
-    max-width: 800px;
-    margin: 0 auto;
     line-height: 1.8;
 }
 
@@ -132,6 +174,12 @@ section h2::after {
     border-color: var(--secondary-color);
     box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
     transform: translateY(-5px);
+}
+
+.timeline-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    display: inline-block;
 }
 
 .timeline-year {
@@ -181,22 +229,33 @@ section h2::after {
 }
 
 .pillar {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
-    padding: 40px;
+    background: white;
     border-radius: 15px;
-    text-align: center;
-    border-left: 5px solid var(--secondary-color);
+    overflow: hidden;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid var(--secondary-color);
+}
+
+.pillar-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.pillar {
+    padding: 30px;
 }
 
 .pillar:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .pillar-icon {
     font-size: 48px;
-    margin-bottom: 15px;
+    margin: 15px 0;
+    display: inline-block;
 }
 
 .pillar h3 {
@@ -208,6 +267,7 @@ section h2::after {
 .pillar p {
     color: var(--light-text);
     line-height: 1.7;
+    font-size: 15px;
 }
 
 /* 統計卡片 */
@@ -237,6 +297,12 @@ section h2::after {
     box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
 }
 
+.stat-icon {
+    font-size: 36px;
+    margin-bottom: 15px;
+    display: block;
+}
+
 .stat-number {
     font-size: 42px;
     font-weight: 700;
@@ -255,10 +321,28 @@ section h2::after {
     background: white;
 }
 
+.innovations-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.innovations-image {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.innovations-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
 .innovations-list {
     list-style: none;
-    max-width: 600px;
-    margin: 40px auto;
 }
 
 .innovations-list li {
@@ -284,6 +368,64 @@ section h2::after {
     margin-right: 10px;
 }
 
+/* 願景區塊 */
+.vision {
+    background-color: var(--light-bg);
+}
+
+.vision-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.vision-image {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vision-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.vision-text p {
+    font-size: 18px;
+    color: var(--light-text);
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.vision-points {
+    display: grid;
+    gap: 15px;
+}
+
+.vision-point {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+}
+
+.vision-icon {
+    font-size: 24px;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.vision-point p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--dark-text);
+}
+
 /* 頁腳 */
 .footer {
     background: var(--primary-color);
@@ -303,7 +445,11 @@ section h2::after {
 
 /* 響應式設計 */
 @media (max-width: 768px) {
-    .hero h1 {
+    .hero-content {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-text h1 {
         font-size: 32px;
     }
 
@@ -311,8 +457,16 @@ section h2::after {
         font-size: 18px;
     }
 
+    .hero-img {
+        height: 250px;
+    }
+
     section h2 {
         font-size: 28px;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
     }
 
     .timeline {
@@ -330,10 +484,18 @@ section h2::after {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .innovations-content {
+        grid-template-columns: 1fr;
+    }
+
+    .vision-content {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
-    .hero h1 {
+    .hero-text h1 {
         font-size: 24px;
     }
 
@@ -355,5 +517,9 @@ section h2::after {
 
     .stats-grid {
         grid-template-columns: 1fr;
+    }
+
+    .pillar-img {
+        height: 150px;
     }
 }
