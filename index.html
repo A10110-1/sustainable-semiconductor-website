@@ -74,7 +74,7 @@
             opacity: 0.8;
         }
 
-        /* 英雄區塊 - 帶背景 */
+        /* 英雄區塊 */
         .hero {
             background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
             background-attachment: fixed;
@@ -144,7 +144,29 @@
             border-bottom: none;
         }
 
-        /* 簡介區塊 - 綠色背景 */
+        section h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 20px;
+            z-index: 2;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* 簡介區塊 */
         .intro-section {
             background: linear-gradient(135deg, #E0F7F4 0%, #F0FDF4 100%);
             position: relative;
@@ -200,28 +222,6 @@
             margin-bottom: 15px;
         }
 
-        section h2 {
-            font-size: 36px;
-            margin-bottom: 50px;
-            text-align: center;
-            color: var(--primary-color);
-            position: relative;
-            padding-bottom: 20px;
-            z-index: 2;
-        }
-
-        section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--secondary-color);
-            border-radius: 2px;
-        }
-
         /* 團隊成員 */
         .team-section {
             background: linear-gradient(135deg, rgba(240, 253, 244, 0.7) 0%, rgba(6, 182, 212, 0.05) 100%);
@@ -259,36 +259,6 @@
             justify-content: center;
             font-size: 80px;
             color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .team-member-photo::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255,255,255,0.05) 10px,
-                rgba(255,255,255,0.05) 20px
-            );
-            animation: slide 20s linear infinite;
-        }
-
-        @keyframes slide {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .team-member-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .team-member-info {
@@ -312,20 +282,6 @@
         .media-section {
             background: linear-gradient(135deg, rgba(6, 182, 212, 0.03) 0%, rgba(240, 253, 244, 0.5) 100%);
             position: relative;
-        }
-
-        .media-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 10% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 90% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
         }
 
         .media-item {
@@ -403,18 +359,6 @@
             position: relative;
         }
 
-        .findings-section::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
         .findings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -488,30 +432,6 @@
             overflow: hidden;
         }
 
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -10%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .footer::after {
-            content: '';
-            position: absolute;
-            bottom: -50%;
-            right: -10%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
         .footer p {
             margin-bottom: 10px;
             position: relative;
@@ -563,15 +483,6 @@
             .download-btn {
                 width: 100%;
                 text-align: center;
-            }
-
-            .intro-section::before,
-            .intro-section::after,
-            .media-section::before,
-            .findings-section::before,
-            .footer::before,
-            .footer::after {
-                display: none;
             }
         }
 
@@ -658,9 +569,7 @@
             <div class="team-grid">
                 <!-- 成員 1 -->
                 <div class="team-member">
-                    <div class="team-member-photo">
-                        👨‍💼
-                    </div>
+                    <div class="team-member-photo">👨‍💼</div>
                     <div class="team-member-info">
                         <h3>李明翔</h3>
                         <p>擔任本專題的總項目經理，主要負責研究方向的制定與整體協調工作。李同學具有深厚的半導體產業知識和豐富的項目管理經驗。在大學四年間，積極參與多個環保與永續發展相關的專題研究，對ESG理念有深入的理解。他致力於將理論知識與實踐相結合，帶領團隊在永續半導體領域取得突破性進展。同時，李同學也是學校永續發展委員會的核心成員，為推動校園綠色轉型做出重要貢獻。</p>
@@ -669,9 +578,7 @@
 
                 <!-- 成員 2 -->
                 <div class="team-member">
-                    <div class="team-member-photo">
-                        👩‍💻
-                    </div>
+                    <div class="team-member-photo">👩‍💻</div>
                     <div class="team-member-info">
                         <h3>王淑芬</h3>
                         <p>擔任本專題的技術研發負責人，主要負責研究報告的撰寫與數據分析工作。王同學專長於環境科學與技術評估，曾在多家高科技公司實習，具有實務經驗。她以嚴謹的學術態度和創新的思維方式，推動了本專題的深入研究。在團隊中，王同學以其卓越的溝通能力和細致的工作風格著稱，確保了所有技術細節的準確性和專業性。她相信技術創新是實現永續發展的關鍵力量。</p>
@@ -680,9 +587,7 @@
 
                 <!-- 成員 3 -->
                 <div class="team-member">
-                    <div class="team-member-photo">
-                        👨‍🔬
-                    </div>
+                    <div class="team-member-photo">👨‍🔬</div>
                     <div class="team-member-info">
                         <h3>陳俊傑</h3>
                         <p>擔任本專題的數據分析與視覺化設計師，主要負責統計分析與圖表設計。陳同學擁有數據科學的堅實基礎，並精通多種數據分析工具。他通過創新的數據可視化方法，將複雜的技術信息轉化為易於理解的視覺內容。陳同學對永續發展議題充滿熱情，致力於用數據說話，為決策層提供有力支持。他的工作為本專題增添了科學的客觀性和專業的表現形式。</p>
@@ -691,9 +596,7 @@
 
                 <!-- 成員 4 -->
                 <div class="team-member">
-                    <div class="team-member-photo">
-                        👩‍🎓
-                    </div>
+                    <div class="team-member-photo">👩‍🎓</div>
                     <div class="team-member-info">
                         <h3>林子晴</h3>
                         <p>擔任本專題的市場調研與政策分析負責人，主要負責全球政策趨勢和市場動態分析。林同學專攻國際關係與政策研究，對全球碳中和承諾有深入的了解。她通過實地調研和文獻分析，為本專題提供了有力的理論支撐和實踐依據。林同學展現出色的研究能力和國際視野，為團隊帶來了寶貴的政策洞察。她堅信多方協作是實現永續發展目標的必要條件。</p>
