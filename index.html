@@ -74,18 +74,40 @@
             opacity: 0.8;
         }
 
-        /* 英雄區塊 */
+        /* 英雄區塊 - 帶背景 */
         .hero {
             background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            background-attachment: fixed;
             color: var(--white);
-            padding: 100px 20px;
+            padding: 120px 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
             font-size: 48px;
             margin-bottom: 20px;
             font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         .hero .subtitle {
@@ -107,36 +129,49 @@
         section {
             padding: 80px 20px;
             border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        section:nth-child(odd) {
+            background: linear-gradient(to bottom, rgba(240, 253, 244, 0.5), rgba(255,255,255,0.8));
+        }
+
+        section:nth-child(even) {
+            background: linear-gradient(to bottom, rgba(6, 182, 212, 0.02), rgba(255,255,255,0.95));
         }
 
         section:last-child {
             border-bottom: none;
         }
 
-        section h2 {
-            font-size: 36px;
-            margin-bottom: 50px;
-            text-align: center;
-            color: var(--primary-color);
+        /* 簡介區塊 - 綠色背景 */
+        .intro-section {
+            background: linear-gradient(135deg, #E0F7F4 0%, #F0FDF4 100%);
             position: relative;
-            padding-bottom: 20px;
         }
 
-        section h2::after {
+        .intro-section::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--secondary-color);
-            border-radius: 2px;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
-        /* 簡介區塊 */
-        .intro-section {
-            background-color: var(--light-bg);
+        .intro-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .intro-content {
@@ -144,6 +179,9 @@
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 1;
+            border-left: 5px solid var(--secondary-color);
         }
 
         .intro-content h3 {
@@ -162,25 +200,54 @@
             margin-bottom: 15px;
         }
 
+        section h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 20px;
+            z-index: 2;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
         /* 團隊成員 */
+        .team-section {
+            background: linear-gradient(135deg, rgba(240, 253, 244, 0.7) 0%, rgba(6, 182, 212, 0.05) 100%);
+        }
+
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 40px;
+            position: relative;
+            z-index: 2;
         }
 
         .team-member {
             background: var(--white);
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
         }
 
         .team-member:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
         }
 
         .team-member-photo {
@@ -192,6 +259,30 @@
             justify-content: center;
             font-size: 80px;
             color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-member-photo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
         }
 
         .team-member-photo img {
@@ -219,7 +310,22 @@
 
         /* 檔案下載區塊 */
         .media-section {
-            background-color: var(--light-bg);
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.03) 0%, rgba(240, 253, 244, 0.5) 100%);
+            position: relative;
+        }
+
+        .media-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .media-item {
@@ -228,6 +334,15 @@
             border-radius: 10px;
             margin-bottom: 30px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 1;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .media-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transform: translateX(5px);
         }
 
         .media-item h3 {
@@ -237,11 +352,12 @@
         }
 
         .media-container {
-            background: #f5f5f5;
+            background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
             padding: 30px;
             border-radius: 8px;
             margin-bottom: 20px;
             text-align: center;
+            border: 1px solid var(--border-color);
         }
 
         .media-container iframe,
@@ -254,7 +370,7 @@
 
         .download-btn {
             display: inline-block;
-            background: var(--secondary-color);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #059669 100%);
             color: var(--white);
             padding: 12px 30px;
             border-radius: 8px;
@@ -264,26 +380,48 @@
             border: none;
             cursor: pointer;
             font-size: 14px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
         }
 
         .download-btn:hover {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0D5E5C 100%);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 6px 20px rgba(15, 118, 110, 0.3);
         }
 
         .download-group {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         /* 研究發現 */
+        .findings-section {
+            background: linear-gradient(180deg, rgba(240, 253, 244, 0.6) 0%, rgba(6, 182, 212, 0.05) 100%);
+            position: relative;
+        }
+
+        .findings-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
         .findings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-top: 40px;
+            position: relative;
+            z-index: 1;
         }
 
         .finding-card {
@@ -293,24 +431,38 @@
             border-left: 5px solid var(--secondary-color);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .finding-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
         }
 
         .finding-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
         .finding-number {
             display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: var(--secondary-color);
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #059669 100%);
             color: var(--white);
             border-radius: 50%;
             text-align: center;
-            line-height: 40px;
+            line-height: 45px;
             font-weight: 700;
+            font-size: 18px;
             margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
         }
 
         .finding-card h3 {
@@ -327,21 +479,57 @@
 
         /* 頁腳 */
         .footer {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0D5E5C 100%);
             color: var(--white);
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px 30px;
             margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .footer::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .footer p {
             margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-top-p {
+            font-weight: 600;
         }
 
         /* 響應式設計 */
         @media (max-width: 768px) {
             .navbar-menu {
                 display: none;
+            }
+
+            .hero {
+                padding: 80px 20px;
             }
 
             .hero h1 {
@@ -375,6 +563,15 @@
             .download-btn {
                 width: 100%;
                 text-align: center;
+            }
+
+            .intro-section::before,
+            .intro-section::after,
+            .media-section::before,
+            .findings-section::before,
+            .footer::before,
+            .footer::after {
+                display: none;
             }
         }
 
@@ -427,7 +624,7 @@
 
     <!-- 英雄區塊 -->
     <header class="hero">
-        <div class="container">
+        <div class="hero-content">
             <h1>永續半導體發展路線圖</h1>
             <p class="subtitle">期末成果展示</p>
             <p style="font-size: 18px; margin-top: 20px;">ESG × 創新 × 減碳</p>
@@ -456,7 +653,7 @@
         </section>
 
         <!-- 團隊成員 -->
-        <section id="team">
+        <section class="team-section" id="team">
             <h2>🤝 團隊成員介紹</h2>
             <div class="team-grid">
                 <!-- 成員 1 -->
@@ -611,7 +808,7 @@
         </section>
 
         <!-- 研究發現 -->
-        <section id="findings">
+        <section class="findings-section" id="findings">
             <h2>💡 主要研究發現</h2>
             <div class="findings-grid">
                 <div class="finding-card">
@@ -650,7 +847,7 @@
     <!-- 頁腳 -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 永續半導體發展路線圖 - 期末成果展示</p>
+            <p class="footer-top-p">&copy; 2024 永續半導體發展路線圖 - 期末成果展示</p>
             <p>致力於推動全球永續發展與技術創新</p>
         </div>
     </footer>
